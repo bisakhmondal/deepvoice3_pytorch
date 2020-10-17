@@ -29,7 +29,8 @@ from tqdm import tqdm, trange
 from datetime import datetime
 
 # The deepvoice3 model
-from deepvoice3_pytorch import frontend, builder
+from deepvoice3_pytorch import frontend
+from deepvoice3_pytorch.builder import deepvoice3
 import audio
 import lrschedule
 
@@ -53,7 +54,7 @@ import os
 from tensorboardX import SummaryWriter
 from matplotlib import cm
 from warnings import warn
-from hparams import hparams, hparams_debug_string
+from hparams import hparams#, hparams_debug_string
 
 fs = hparams.sample_rate
 
@@ -776,7 +777,7 @@ def save_checkpoint(model, optimizer, step, checkpoint_dir, epoch,
 
 
 def build_model():
-    model = getattr(builder, hparams.builder)(
+    model = deepvoice3(
         n_speakers=hparams.n_speakers,
         speaker_embed_dim=hparams.speaker_embed_dim,
         n_vocab=_frontend.n_vocab,
