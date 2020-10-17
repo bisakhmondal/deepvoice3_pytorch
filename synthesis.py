@@ -30,7 +30,7 @@ import nltk
 
 # The deepvoice3 model
 from deepvoice3_pytorch import frontend
-from hparams import hparams, hparams_debug_string
+from hparams import hparams#, hparams_debug_string
 
 from tqdm import tqdm
 
